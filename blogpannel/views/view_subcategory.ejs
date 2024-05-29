@@ -1,0 +1,74 @@
+<%- include('header') %>
+
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid" style="text-align: center;">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form class="form-header m-b-30">
+                                    <input class="au-input au-input--xl" value="<%= search %>" type="text" name="search" placeholder="Search for title" />
+                                    <button class="au-btn--submit" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                    <button class="au-btn--submit" style="margin-left: 20px;">
+                                        <a href="/admin/subcategory/view_subcategory" style="color: white; padding: 0 20px;">Reset</a>
+                                    </button>
+                                </form>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <form action="/admin/deletemulsubcategory" method="post">
+                                            <table class="table table-borderless table-striped table-earning">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Category</th>
+                                                        <th>Subcategory</th>
+                                                        <th>Description</th>
+                                                        <th>Created Date</th>
+                                                        <th>Images</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% var i=1 %>
+                                                    <% for(subcdata of subcategorydata){ %> 
+                                                        <tr>
+                                                            <td><%= i++ %></td>
+                                                            <td><%= subcdata.categoryid.category %></td>
+                                                            <td><%= subcdata.title %></td>
+                                                            <td><%= subcdata.description.substr(0,20) %>...</td>
+                                                            <td><%= subcdata.create_date %></td>
+                                                            <td>
+                                                                <img src="<%= subcdata.subcategoryimage %>" alt="subcategoryimage">
+                                                            </td>
+                                                            <td>
+                                                                <% if(subcdata.status){ %> 
+                                                                    <a href="/admin/subcategory/deactive/<%= subcdata.id %>" class="text-success">Active</a>
+                                                                <% }else{ %> 
+                                                                    <a href="/admin/subcategory/active/<%= subcdata.id %>" class="text-danger">Deactive</a>
+                                                                <% } %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/admin/subcategory/deletesubcategory/<%= subcdata.id %>">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a> ||
+                                                                <a href="/admin/subcategory/updatesubcategory/?id=<%= subcdata.id %>">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <% } %>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%- include('pegination') %>
+
+<%- include('footer') %>

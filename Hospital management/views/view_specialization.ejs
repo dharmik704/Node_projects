@@ -1,0 +1,44 @@
+<%- include('header') %>
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">View Specialization</h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Specialization</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% var i=1 %>
+                                    <% for(sd of spldata){ %> 
+                                    <tr>
+                                        <th style="padding: 10px 7px;"><%= i++ %></th>
+                                        <td style="padding: 10px 7px;"><%= sd.specialization %></td>
+                                        <td style="padding: 10px 7px;">
+                                            <% if(sd.status){ %> 
+                                                <a href="/admin/specialization/deactive/<%= sd.id %>" class="text-success">Active</a>
+                                            <% }else{ %> 
+                                                <a href="/admin/specialization/active/<%= sd.id %>" class="text-danger">Deactive</a>
+                                            <% } %>
+                                        </td>
+                                        <td style="padding: 10px 25px;">
+                                            <a href="/admin/specialization/deletespecialization/<%= sd.id %>" style="color: rgb(255, 83, 83);"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+<%- include('footer') %>

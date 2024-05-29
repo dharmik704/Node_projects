@@ -1,0 +1,60 @@
+<%- include('header') %>
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                            <h4 class="card-title">Show Doctors</h4>
+                            <div class="table-responsive">
+                              <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Specialization</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Consultancy Fees</th>
+                                        <th scope="col">Status</th>
+                                        <th style="text-align: center;" colspan="2" scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(dc of doctordata){ %> 
+                                    <tr>
+                                        <td scope="row"><img src="<%= dc.doctorimg %>" alt="image" width="50" style="border-radius: 50%;"></td>
+                                        <td style="padding: 20px 7px;"><%= dc.name %></td>
+                                        <td style="padding: 20px 7px;"><%= dc.specializationid.specialization %></td>
+                                        <td style="padding: 20px 7px;"><%= dc.email %></td>
+                                        <td style="padding: 20px 7px;"><%= dc.gender %></td>
+                                        <td style="padding: 20px 7px;"><%= dc.city %></td>
+                                        <td style="padding: 20px 7px;"><%= dc.consultancy_fees %></td>
+                                        <td style="padding: 20px 7px;">
+                                            <% if(dc.status){ %> 
+                                                <a href="/admin/doctor/deactive/<%= dc.id %>" class="text-success">Active</a>
+                                            <% }else{ %> 
+                                                <a href="/admin/doctor/active/<%= dc.id %>" class="text-danger">Deactive</a>
+                                            <% } %>
+                                        </td>
+                                        <td style="padding: 20px 7px;">
+                                            <a href="/admin/doctor/deletedoctor/<%= dc.id %>" style="color: rgb(255, 83, 83);"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                        <td style="padding: 20px 7px;">
+                                            <a href="/admin/doctor/showdoctor/<%= dc.id %>" style="color: rgb(1, 95, 14);"><i class="far fa-eye"></i></a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+<%- include('footer') %>

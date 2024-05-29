@@ -1,0 +1,56 @@
+<%- include('doctor_header') %>
+
+            <!-- Table Start -->
+            <center>
+                <div class="container-fluid pt-4 px-4">
+                    <img src="<%= locals.doctor.doctorimg %>" alt="image" width="150" style="border-radius: 50%; margin-bottom: 20px;">
+                    
+                    <div class="row g-3" style="justify-content: center;">
+                        <a style="color: green" href="/doctor/updateprofile/<%= locals.doctor.id %>">Edit <i class="fa fa-edit"></i></a>
+                        <div class="col-sm-12 col-xl-6">
+                            <div class="bg-light rounded h-100 p-4">
+                                <h6 class="mb-4">Your Profile</h6>
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Name</th>
+                                            <td><%= locals.doctor.name %></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Doctor Specialization</th>
+                                            <td><%= locals.doctor.specializationid.specialization %></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Email</th>
+                                            <td><%= locals.doctor.email %></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Contact No.</th>
+                                            <td><%= locals.doctor.contact_no %></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Consultancy_Fees</th>
+                                            <td><%= locals.doctor.consultancy_fees %></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Gender</th>
+                                            <td><%= locals.doctor.gender %></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">City</th>
+                                            <td><%= locals.admin.city %></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Role</th>
+                                            <td><%= locals.doctor.role %></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </center>
+            <!-- Table End -->
+
+<%- include('doctor_footer') %>

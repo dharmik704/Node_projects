@@ -1,0 +1,16 @@
+<% if(currentpage>0){ %> 
+    <button class="au-btn--submit" style="margin-left: 10px;">
+        <a href="?page=<%= currentpage-1 %>&search=<%= search %>" style="color: white;">Prev</a>
+    </button>
+<% } %>
+
+<button class="au-btn--submit" style="margin-left: 10px;">
+    <a href="?page=<%= currentpage %>&search=<%= search %>" style="color: white;"><%= parseInt(currentpage)+1 %></a>
+</button>
+
+<% var next= parseInt(currentpage)+1 %>
+<% if(next<totalpage){ %>  
+    <button class="au-btn--submit" style="margin-left: 10px;">
+        <a href="?page=<%= next %>&search=<%= search %>" style="color: white;">Next</a>
+    </button>
+<% } %>

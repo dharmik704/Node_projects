@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+    <link rel="stylesheet" href="/fonts/font-awsome/css/fontawesome.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awsome/css/all.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/Rubik/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" type="text/css">   
+</head>
+<body>
+    
+    <header>
+
+        <div class="header-item">
+            <div class="container">
+                <div class="header-content d-flex align-center justify-between">
+                    <div class="logo">
+                        <h1>Moviesmagic</h1>
+                    </div>
+                    <div class="menu">
+                        <ul class="d-flex">
+                            <li><a href="/movies/showmovies">Movie</a></li>
+                            <li><a href="/movies/addmovie">Add</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- movies-contant -->
+
+        <section class="movies-contant">
+            <div class="container">
+                <div class="title text-center">
+                    <!-- <h1>Movie Detailes</h1> -->
+                </div>
+                <div class="row">
+                    <div class="w-2">
+                        <div class="image">
+                            <img src="<%= mdetail.image %>" alt="image">
+                        </div>
+                    </div>
+                    <div class="w-2">
+                        <div class="contant">
+                            <div class="movie-data">
+                                <div class="d-flex align-center justify-between">
+                                    <h3><%= mdetail.title %></h3>
+                                    <h4><%= mdetail.rating %>/10</h4>
+                                </div>
+                                <p><%= mdetail.screen %></p>
+                            </div>
+                            <div class="movie-data d-flex align-center">
+                                <h5>Director:</h5>
+                                <p><%= mdetail.directore %></p>
+                            </div>
+                            <div class="movie-data d-flex">
+                                <h5>Actores:</h5>
+                                <p><%= mdetail.actores %></p>
+                            </div>
+                            <div class="movie-data d-flex">
+                                <h5>Type:</h5>
+                                <p><%= mdetail.type %></p>
+                            </div>
+                            <div class="movie-data d-flex">
+                                <h5>Language:</h5>
+                                <p><%= mdetail.language %></p>
+                            </div>
+                            <div class="movie-data d-flex">
+                                <h5>Description:</h5>
+                                <p><%= mdetail.description %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- trailer -->
+
+        <section class="trailer">
+            <div class="container">
+                <div class="title text-center">
+                    <h2>Watch Trailer</h2>
+                </div>
+                <div class="trailer-link">
+                    <iframe src="<%= mdetail.trailer_link %>" frameborder="0"></iframe>
+                </div>
+                <div class="btn text-center">
+                    <a href="/movies/showmovies">Back</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/js/jquery-3.6.4.min.js" type="text/javascript"></script>
+    <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/js/swiper-bundle.min.js" type="text/javascript"></script>
+
+</body>
+</html>

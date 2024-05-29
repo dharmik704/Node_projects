@@ -1,0 +1,55 @@
+
+    <%- include('header') %>
+
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="image" style="text-align: center;">
+                <img src="<%= locals.admin.image %>" alt="image" width="150" style="border-radius: 50%;">
+            </div>
+          <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card" style="transform: translate(50%, 0);">
+              <div class="card mt-4">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td><%= locals.admin.name %></td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td><%= locals.admin.email %></td>
+                            </tr>
+                            <tr>
+                                <th>Hobby</th>
+                                <td><%= locals.admin.hobby %></td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td><%= locals.admin.gender %></td>
+                            </tr>
+                            <tr>
+                                <th>City</th>
+                                <td><%= locals.admin.city %></td>
+                            </tr>
+                            <tr>
+                                <th>Message</th>
+                                <td><%= locals.admin.message %></td>
+                            </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="edit" style="text-align: center;">
+            <a href="/admin/updateadmin/?id=<%= locals.admin.id %>" style="padding: 10px 20px;" class="btn btn-primary">Edit</a>
+        </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+
+    <%- include('footer') %>

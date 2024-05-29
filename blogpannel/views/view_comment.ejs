@@ -1,0 +1,66 @@
+<%- include('header') %>
+
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid" style="text-align: center;">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <form action="/admin/comment/deletemulticomment" method="post">
+                                        <table class="table table-borderless table-striped table-earning">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <input type="checkbox" id="CheckAll">
+                                                        <button type="submit" style="margin-left: 5px; color: white;"><i class="fa fa-trash"></i></button>
+                                                    </th>
+                                                    <th>No.</th>
+                                                    <th>Title</th>
+                                                    <th>Name</th>
+                                                    <th>Created Date</th>
+                                                    <th>Message</th>
+                                                    <th>Image</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% var i=1 %>
+                                                <% for(cdata of commentdata){ %> 
+                                                    <tr>
+                                                        <td><input type="checkbox" value="<%= cdata.id %>" name="commentids[]"></td>
+                                                        <td><%= i++ %></td>
+                                                        <td><%= cdata.postid.title.substr(0,35) %>...</td>
+                                                        <td><%= cdata.name %></td>
+                                                        <td><%= cdata.create_date %></td>
+                                                        <td><%= cdata.message.substr(0,20) %>...</td>
+                                                        <td><img src="<%= cdata.commentimage %>" alt="image" width="100"></td>
+                                                        <td>
+                                                            <% if(cdata.status){ %> 
+                                                                <a href="/admin/comment/deactive/<%= cdata.id %>" class="text-success">Active</a>
+                                                            <% }else{ %> 
+                                                                <a href="/admin/comment/active/<%= cdata.id %>" class="text-danger">Deactive</a>
+                                                            <% } %>
+                                                        </td>
+                                                        <td>
+                                                            <a href="/admin/comment/deletecomment/<%= cdata.id %>">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a> ||
+                                                            <a href="/admin/comment/updatecomment/?id=<%= cdata.id %>">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+<%- include('footer') %>

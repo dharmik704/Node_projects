@@ -1,0 +1,95 @@
+
+<%- include('doctor_header') %>
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-9">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Update Profile</h6>
+                    <% var fullname = docdata.name.split(' ') %>
+                    <form method="post" action="/doctor/editprofile/<%= docdata.id %>" enctype="multipart/form-data">
+                        <div class="row mb-3">
+                            <label for="firstname" class="col-sm-3 col-form-label">First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="firstname" value="<%= fullname[0] %>" placeholder="first name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="lastname" class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="lastname" value="<%= fullname[1] %>" placeholder="last name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="city" class="col-sm-3 col-form-label">Specialization</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" aria-label="Default select example" name="specializationid">
+                                    <option selected>--select specialization--</option>
+                                    <%spldata.map((v,i)=> { %> 
+                                        <option <% if(docdata.specializationid.spldata==v.id){%> <%= 'selected' %> <% } %> value="<%= v.id %>"><%= v.specialization %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" name="email" value="<%= docdata.email %>" placeholder="email">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="address" class="col-sm-3 col-form-label">Contact No.</label>
+                            <div class="col-sm-9">
+                                <input name="contact_no" value="<%= docdata.contact_no %>" class="form-control" placeholder="contact no." cols="30" rows="3">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="address" class="col-sm-3 col-form-label">Consultancy Fees</label>
+                            <div class="col-sm-9">
+                                <input value="<%= docdata.consultancy_fees %>" name="consultancy_fees" class="form-control" placeholder="consultancy fees" cols="30" rows="3">
+                            </div>
+                        </div>
+                        <fieldset class="row mb-3">
+                            <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input class="form-check-input" value="Male" <% if(docdata.gender=='Male'){ %> <%= 'checked' %> <% } %> type="radio" name="gender"> Male
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" value="Female" <% if(docdata.gender=='Female'){ %> <%= 'checked' %> <% } %> type="radio" name="gender"> Female
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row mb-3">
+                            <label for="city" class="col-sm-3 col-form-label">City</label>
+                            <div class="col-sm-9">
+                                <% var city=['Surat','Vadodara','Ahmedabad','Rajkot','Vapi'] %>
+                                <select class="form-select mb-3" aria-label="Default select example" name="city">
+                                    <option selected>--select city--</option>
+                                    <% city.map((v,i)=> { %> 
+                                        <option <% if(docdata.city==v){%> <%= 'selected' %> <% } %> value="<%= v %>"><%= v %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="formFile" class="col-sm-3 col-form-label">Upload Image</label>
+                            <div class="col-sm-9">
+                                <input class="form-control mb-3" type="file" name="doctorimg">
+                                <img src="<%= docdata.doctorimg %>" alt="image" width="100">
+                            </div>
+                            <!-- <div class="col-sm-10">
+                                
+                            </div> -->
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary mt-3">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form End -->
+
+<%- include('doctor_footer') %>

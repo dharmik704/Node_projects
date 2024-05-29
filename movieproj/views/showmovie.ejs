@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+    <link rel="stylesheet" href="/fonts/font-awsome/css/fontawesome.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awsome/css/all.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/Rubik/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" type="text/css">   
+</head>
+<body>
+    
+    <header>
+
+        <div class="header-item">
+            <div class="container">
+                <div class="header-content d-flex align-center justify-between">
+                    <div class="logo">
+                        <h1>Moviesmagic</h1>
+                    </div>
+                    <div class="menu">
+                        <ul class="d-flex">
+                            <li><a href="">Movie</a></li>
+                            <li><a href="addmovie">Add</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- banner -->
+
+        <section class="banner">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/img/animal.jpg" alt="animal">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/img/hi-nanna.webp" alt="hi-nanna">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/img/salaar.jpg" alt="salaar">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/img/3-ekka.avif" alt="3-ekka">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/img/spiderman.jpg" alt="spiderman">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+
+        <!-- search -->
+
+        <section class="search">
+            <div class="container">
+                <div class="search-box text-center align-center">
+                    <input type="text" placeholder="Search">
+                    <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- poster -->
+
+        <section class="poster">
+            <div class="container">
+                <div class="title text-center">
+                    <h1>Show Movies</h1>
+                </div>
+                <div class="row">
+                    <% for(mdata of mdata){ %> 
+                        <div class="w-4">
+                            <div class="movie-card">
+                                <div class="card">
+                                    <a href="/movies/showmoviedetails/?id=<%= mdata.id %>">
+                                        <img src="<%= mdata.image %>" alt="image">
+                                        <div class="rating text-center">
+                                            <h4>Rating: <%= mdata.rating %></h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/js/jquery-3.6.4.min.js" type="text/javascript"></script>
+    <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/js/swiper-bundle.min.js" type="text/javascript"></script>
+
+    <script>
+
+        // banner-swiper
+
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            // effect: "fade",
+            loop: true,
+            speed: 1000,
+            autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+    </script>
+
+</body>
+</html>

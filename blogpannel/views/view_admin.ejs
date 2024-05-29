@@ -1,0 +1,104 @@
+<%- include('header') %>
+
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid" style="text-align: center;">
+                        <div class="row">
+                            
+                            <div class="col-lg-12">
+                                <form class="form-header m-b-30">
+                                    <input class="au-input au-input--xl" value="<%= search %>" type="text" name="search" placeholder="Search for name,email,gender or city...." />
+                                    <button class="au-btn--submit" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                    <button class="au-btn--submit" style="margin-left: 20px;">
+                                        <a href="/admin/view_admin" style="color: white; padding: 0 20px;">Reset</a>
+                                    </button>
+                                </form>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <form action="/admin/deletemultiadmin" method="post">
+                                        <table class="table table-borderless table-striped table-earning">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <input type="checkbox" id="CheckAll">
+                                                        <button type="submit" style="margin-left: 5px; color: white;"><i class="fa fa-trash"></i></button>
+                                                    </th>
+                                                    <th>No.</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Hobby</th>
+                                                    <th>Gender</th>
+                                                    <th>City</th>
+                                                    <th>Message</th>
+                                                    <th>Image</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% var i=1 %>
+                                                <% for(adata of admdata){ %> 
+                                                    <tr>
+                                                        <td><input type="checkbox" value="<%= adata.id %>" name="adminids[]"></td>
+                                                        <td><%= i++ %></td>
+                                                        <td><%= adata.name %></td>
+                                                        <td><%= adata.email %></td>
+                                                        <td><%= adata.hobby %></td>
+                                                        <td><%= adata.gender %></td>
+                                                        <td><%= adata.city %></td>
+                                                        <td><%= adata.message %></td>
+                                                        <td><img src="<%= adata.image %>" alt="image" height="100"></td>
+                                                        <td>
+                                                            <% if(adata.status){ %> 
+                                                                <a href="/admin/deactive/<%= adata.id %>" class="text-success">Active</a>
+                                                            <% }else{ %> 
+                                                                <a href="/admin/active/<%= adata.id %>" class="text-danger">Deactive</a>
+                                                            <% } %>
+                                                        </td>
+                                                        <td>
+                                                            <a href="/admin/deleteadmin/<%= adata.id %>">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a> ||
+                                                            <a href="/admin/updateadmin/?id=<%= adata.id %>">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <% for(i=0; i<totalpage;){ %> 
+                                    
+                            <button class="au-btn--submit" style="margin-left: 10px;">
+                                <a href="?page=<%= i %>" style="color: white;"><%= ++i %></a>
+                            </button>
+                            
+                        <% } %> -->
+
+                        <% if(currentpage>0){ %> 
+                            <button class="au-btn--submit" style="margin-left: 10px;">
+                                <a href="?page=<%= currentpage-1 %>&search=<%= search %>" style="color: white;">Prev</a>
+                            </button>
+                        <% } %>
+                        
+                        <button class="au-btn--submit" style="margin-left: 10px;">
+                            <a href="?page=<%= currentpage %>&search=<%= search %>" style="color: white;"><%= parseInt(currentpage)+1 %></a>
+                        </button>
+
+                        <% var next= parseInt(currentpage)+1 %>
+                        <% if(next<totalpage){ %>  
+                            <button class="au-btn--submit" style="margin-left: 10px;">
+                                <a href="?page=<%= next %>&search=<%= search %>" style="color: white;">Next</a>
+                            </button>
+                        <% } %>
+
+<%- include('footer') %>
+

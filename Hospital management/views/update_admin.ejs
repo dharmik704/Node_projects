@@ -1,0 +1,101 @@
+
+<%- include('header') %>
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-9">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Update Admin</h6>
+                    <% var fullname = admindata.name.split(' ') %>
+                    <form method="post" action="/admin/editadmin/<%= admindata.id %>" enctype="multipart/form-data">
+                        <div class="row mb-3">
+                            <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="firstname" value="<%= fullname[0] %>" placeholder="first name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="lastname" value="<%= fullname[1] %>" placeholder="last name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="email" value="<%= admindata.email %>" placeholder="email">
+                            </div>
+                        </div>
+                        <fieldset class="row mb-3">
+                            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" value="Male" <% if(admindata.gender=='Male'){ %> <%= 'checked' %> <% } %> type="radio" name="gender"> Male
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" value="Female" <% if(admindata.gender=='Female'){ %> <%= 'checked' %> <% } %> type="radio" name="gender"> Female
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row mb-3">
+                            <legend class="col-form-label col-sm-2 pt-0">Hobby</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" <% if(admindata.hobby.includes('Writing')){ %> <%= 'checked' %> <% } %> value="Writing" type="checkbox" name="hobby">
+                                    <label class="form-check-label" for="hobby">
+                                        Writing
+                                    </label>   
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" <% if(admindata.hobby.includes('Reading')){ %> <%= 'checked' %> <% } %> value="Reading" type="checkbox" name="hobby">
+                                    <label class="form-check-label" for="hobby">
+                                        Reading
+                                    </label>  
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" <% if(admindata.hobby.includes('Adventure')){ %> <%= 'checked' %> <% } %> value="Adventure" type="checkbox" name="hobby">
+                                    <label class="form-check-label" for="hobby">
+                                        Adventure
+                                    </label>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="city" class="col-sm-2 col-form-label">City</label>
+                            <div class="col-sm-10">
+                                <% var city=['Surat','Vadodara','Ahmedabad','Rajkot','Vapi'] %>
+                                <select class="form-select mb-3" aria-label="Default select example" name="city">
+                                    <option selected>--select city--</option>
+                                    <% city.map((v,i)=> { %> 
+                                        <option <% if(admindata.city==v){%> <%= 'selected' %> <% } %> value="<%= v %>"><%= v %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="address" class="col-sm-2 col-form-label">Address</label>
+                            <div class="col-sm-10">
+                                <textarea name="address" class="form-control" placeholder="address" cols="30" rows="3"><%= admindata.address %></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="formFile" class="col-sm-2 col-form-label">Upload Image</label>
+                            <div class="col-sm-10">
+                                <input class="form-control mb-3" type="file" name="image">
+                                <img src="<%= admindata.image %>" alt="image" width="100">
+                            </div>
+                            <!-- <div class="col-sm-10">
+                                
+                            </div> -->
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary mt-3">Update Admin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form End -->
+
+<%- include('footer') %>

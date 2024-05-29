@@ -1,0 +1,68 @@
+<%- include('header') %>
+
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid" style="text-align: center;">
+                        <div class="row">
+                            <div class="col-lg-9 m-auto">
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning" style="text-align: left;">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <td><%= cd.name %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td><%= cd.email %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Subject</th>
+                                                <td><%= cd.subject %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Message</th>
+                                                <td><%= cd.message %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Created Date</th>
+                                                <td><%= cd.create_date %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Status</th>
+                                                <td>
+                                                    <% if(cd.status){ %> 
+                                                        Pending
+                                                    <% }else{ %> 
+                                                        Done
+                                                    <% } %>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                       <form action="/admin/contact-us/sendmail/<%= cd.id %>" method="post" style="text-align: center;">
+
+                        <div class="row form-group">
+                            <div class="col col-md-2">
+                                
+                            </div>
+                            <div class="col col-md-2">
+                                <label for="textarea-input" class="form-control-label">Replay</label>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <textarea name="message" id="textarea-input" rows="3" placeholder="message..." class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                            <button class="btn btn-primary mb-3">Send Mail</button>
+                       </form>
+
+                        <a href="/admin/contact-us/view_message" class="btn btn-primary mt-3 mb-5">Back</a>
+
+<%- include('footer') %>

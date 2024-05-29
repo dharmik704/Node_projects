@@ -1,0 +1,282 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Rubik', sans-serif;
+    transition: all 0.3s ease-in-out;
+    background: rgb(18 18 18);
+}
+a{
+    text-decoration: none;
+}
+p{
+    color: rgb(69 69 69);
+}
+.container{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+.d-flex{
+    display: flex;
+}
+.justify-between{
+    justify-content: space-between;
+}
+.align-center{
+    align-items: center;
+}
+.text-center{
+    text-align: center;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.w-2{
+    width: 50%;
+}
+.w-3{
+    width: 33.33%;
+}
+.w-4{
+    width: 25%;
+}
+
+/* header */
+
+header{
+    background: rgb(51 51 51);
+    transition: all 0.4s ease-in-out;
+}
+.header-item{
+    padding: 30px 0;
+    width: 100%;
+    top: 50px;
+}
+header .header-item .header-content .logo{
+    color: white;
+}
+header .header-item .menu ul{
+    list-style: none;
+}
+header .header-item .menu ul li a{
+    font-size: 18px;
+    color: rgb(214, 214, 214);
+    margin: 0 20px;
+    transition: all 0.4s ease-in-out;
+}
+header .header-item .menu ul li a:hover{
+    color: white;
+}
+
+/* main */
+
+/* banner */
+
+.banner .swiper .swiper-slide img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.banner .swiper{
+    padding: 40px 18px;
+}
+.banner .swiper .swiper-slide{
+    padding: 0 18px;
+}
+.swiper-pagination .swiper-pagination-bullet{
+    width: 12px;
+    height: 12px;
+    background: gainsboro;
+}
+.swiper-pagination-bullet-active{
+    background: white;
+}
+.swiper-button-next::after{
+    color: rgba(255, 255, 255, 0.781);
+    transition: all 0.4s ease-in-out;
+}
+.swiper-button-next:hover::after{
+    color: white;
+}
+.swiper-button-prev::after{
+    color: rgba(255, 255, 255, 0.781);
+    transition: all 0.4s ease-in-out;
+}
+.swiper-button-prev:hover::after{
+    color: white;
+}
+
+/* search */
+
+.search .search-box{
+    margin-top: 40px;
+}
+.search .search-box input{
+    width: 350px;
+    height: 43.4px;
+    color: black;
+    font-size: 18px;
+    padding: 10px 20px;
+    outline: none;
+    border-radius: 5px;
+    font-family: 'Rubik', sans-serif;
+}
+.search .search-box a i{
+    color: white;
+    font-size: 20px;
+    padding: 11.5px 20px;
+    background: rgba(238, 238, 238, 0.363);
+    margin-left: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.search .search-box a:hover i{
+    background: white;
+    color: black;
+}
+
+/* poster */
+
+.poster{
+    padding: 60px 0;
+}
+.poster .row .w-4{
+    margin-bottom: 70px;
+}
+.poster .title h1{
+    color: white;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+}
+.poster .movie-card{
+    margin: 0 20px;
+}
+.poster .movie-card .card{
+    width: 100%;
+    height: 400px;
+    background: white;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.13);
+    overflow: hidden;
+}
+.poster .movie-card .card a img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s all ease-in-out;
+}
+.poster .movie-card .card a:hover img{
+    transform: scale(1.08);
+}
+.poster .movie-card .card a .rating h4{
+    background: rgba(0, 0, 0, 0.9);
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: white;
+    padding: 10px 0;
+    transform: translateY(-48px);
+}
+
+/* addmovies */
+
+h2{
+    margin: 30px 0;
+    color: white;
+}
+form{
+    padding-bottom: 50px;
+}
+form table tr td{
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+form input[type=submit]{
+    padding: 8px 30px;
+    margin-top: 20px;
+    width: 100%;
+}
+form input[type=checkbox]{
+    width: 15px;
+}
+form input[type=radio]{
+    width: 15px;
+}
+
+/* showmoviedetails */
+
+.movies-contant{
+    padding-top: 100px;
+}
+.movies-contant .image img{
+    width: 70%;
+    height: 70%;
+    margin-left: 100px;
+}
+.movies-contant .contant{
+    margin-right: 90px;
+}
+.movies-contant .contant .movie-data h3{
+    font-size: 40px;
+    color: white;
+}
+.movies-contant .contant .movie-data h4{
+    font-size: 40px;
+    color: white;
+}
+.movies-contant .contant .movie-data:nth-of-type(1) p{
+    font-size: 20px;
+    margin: 0;
+    color: rgba(240, 240, 240, 0.849);
+}
+.movies-contant .contant .movie-data h5{
+    font-size: 25px;
+    color: white;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.movies-contant .contant .movie-data p{
+    font-size: 20px;
+    color: rgba(240, 240, 240, 0.849);
+    margin-top: 25px;
+}
+
+/* trailer */
+
+.trailer{
+    padding-bottom: 100px;
+}
+.trailer .title h2{
+    color: white;
+    font-size: 40px;
+    margin-top: 70px;
+}
+.trailer .trailer-link iframe{
+    width: 100%;
+    height: 500px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.trailer .btn{
+    margin-top: 100px;
+}
+.trailer .btn a{
+    font-size: 20px;
+    color: black;
+    background: rgba(238, 238, 238, 0.911);
+    padding: 10px 40px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+.trailer .btn a:hover{
+    background: white;
+}

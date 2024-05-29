@@ -1,0 +1,54 @@
+<%- include('header') %>
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">View Admins</h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Hobby</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(ad of admindata){ %> 
+                                    <tr>
+                                        <td scope="row"><img src="<%= ad.image %>" alt="image" width="50" style="border-radius: 50%;"></td>
+                                        <td style="padding: 20px 7px;"><%= ad.name %></td>
+                                        <td style="padding: 20px 7px;"><%= ad.email %></td>
+                                        <td style="padding: 20px 7px;"><%= ad.gender %></td>
+                                        <td style="padding: 20px 7px;"><%= ad.hobby %></td>
+                                        <td style="padding: 20px 7px;"><%= ad.city %></td>
+                                        <td style="padding: 20px 7px;"><%= ad.address %></td>
+                                        <td style="padding: 20px 7px;">
+                                            <% if(ad.status){ %> 
+                                                <a href="/admin/deactive/<%= ad.id %>" class="text-success">Active</a>
+                                            <% }else{ %> 
+                                                <a href="/admin/active/<%= ad.id %>" class="text-danger">Deactive</a>
+                                            <% } %>
+                                        </td>
+                                        <td style="padding: 20px 7px;">
+                                            <a href="/admin/deleteadmin/?id=<%= ad.id %>" style="color: rgb(255, 83, 83);"><i class="fa fa-trash"></i></a> ||
+                                            <a href="/admin/updateadmin/?id=<%= ad.id %>" style="color: green"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+<%- include('footer') %>

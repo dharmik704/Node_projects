@@ -1,0 +1,68 @@
+
+<%- include('header') %>
+
+<div class="main-panel">        
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-9 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Add New Admin</h4>
+              <form class="forms-sample" method="post" action="/admin/insertadmin" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="exampleInputName1">First Name</label>
+                  <input type="text" class="form-control" name="fname" id="exampleInputName1" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Last Name</label>
+                    <input type="text" class="form-control" name="lname" id="exampleInputName1" placeholder="Last Name">
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail3">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail3" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword4">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword4" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Hobby</label><br>
+                      <input type="checkbox" name="hobby" value="Study"> Study
+                      <input type="checkbox" name="hobby" value="Running" style="margin-left: 10px;"> Running
+                      <input type="checkbox" name="hobby" value="Adventure" style="margin-left: 10px;"> Adventure
+                  </div>
+                <div class="form-group">
+                  <label for="exampleSelectGender">Gender</label><br>
+                    <input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female" style="margin-left: 10px;"> Female
+                </div>
+                <% var city=['Surat','Vadodara','Rajkot','Ahmedabad'] %>
+                <div class="form-group">
+                    <label for="exampleInputCity1">City</label>
+                    <select name="city" class="form-control">
+                        <option value="">--Select City--</option>
+                        <% city.map((v,i)=> { %> 
+                            <option value="<%= v %>"><%= v %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea1">Message</label>
+                    <textarea class="form-control" name="message" id="exampleTextarea1" rows="4" placeholder="Message"></textarea>
+                  </div>
+                <div class="form-group">
+                  <label>Upload Image</label><br>
+                  <div class="input-group col-xs-12">
+                    <input type="file" class="form-control file-upload-info" name="image">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('footer') %>
