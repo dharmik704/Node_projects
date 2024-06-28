@@ -27,15 +27,17 @@ routes.get('/logout', async (req,res) => {
 
 routes.get('/dashboard', passport.doccheckAuth, doctorctrl.dashboard);
 
-// routes.get('/add_admin', passport.checkAuth, adminctrl.addadmin);
+routes.get('/add_time', passport.doccheckAuth, doctorctrl.add_time);
 
-// routes.post('/insertadmin', passport.checkAuth, admin.uploadimage, adminctrl.insertadmin);
+routes.post('/savetime', passport.doccheckAuth, doctorctrl.savetime);
 
-// routes.get('/view_admin', passport.checkAuth, adminctrl.viewadmin);
+routes.get('/view_time', passport.doccheckAuth, doctorctrl.view_time);
 
-// routes.get('/deleteadmin', passport.checkAuth, adminctrl.deleteadmin);
+routes.get('/viewappointment', passport.doccheckAuth, doctorctrl.viewappointment);
 
-// routes.get('/updateadmin', passport.checkAuth, adminctrl.updateadmin);
+routes.get('/updatetime/:id', passport.doccheckAuth, doctorctrl.updatetime);
+
+routes.post('/edittime/:id', passport.doccheckAuth, doctorctrl.edittime);
 
 routes.get('/profile', passport.doccheckAuth, doctorctrl.profile);
 
@@ -47,9 +49,11 @@ routes.get('/changepassword', passport.doccheckAuth, doctorctrl.changepassword);
 
 routes.post('/editpassword', passport.doccheckAuth, doctorctrl.editpassword);
 
-// routes.get('/deactive/:id', passport.checkAuth, adminctrl.deactive);
+routes.get('/deactive/:id', passport.doccheckAuth, doctorctrl.deactive);
 
-// routes.get('/active/:id', passport.checkAuth, adminctrl.active);
+routes.get('/active/:id', passport.doccheckAuth, doctorctrl.active);
+
+routes.get('/addpatientdetail/:id', passport.doccheckAuth, doctorctrl.addpatientdetail);
 
 // forgot password code
 

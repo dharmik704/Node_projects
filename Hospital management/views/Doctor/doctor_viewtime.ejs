@@ -1,0 +1,33 @@
+<%- include('doctor_header') %>
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">View Time For Doctor Present In Hospital</h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(dtime of timedata){ %> 
+                                    <tr>
+                                        <td style="padding: 20px 7px;"><%= dtime.time %></td>
+                                        <td style="padding: 20px 7px;">
+                                            <a href="/doctor/updatetime/<%= dtime.id %>" style="color: green"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+<%- include('doctor_footer') %>

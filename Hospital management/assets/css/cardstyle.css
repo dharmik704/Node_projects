@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.w-2{
+    width: 50%;
+}
+.d-flex{
+    display: flex;
+}
+.text-center{
+    text-align: center;
+}
+
+.card_content{
+    padding: 50px;
+}
+.card_content .card{
+    width: 100%;
+    padding: 40px 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card .image img{
+    width: 200px;
+    border-radius: 50%;
+    border: 2px solid rgb(0 156 255);
+    padding: 10px;
+}
+.card .card-body{
+    margin-top: 10px;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-prev{
+    background: url(../img/pre-btn.png);
+    left: 0;
+    top: 2px;
+    background-repeat: no-repeat;
+    background-size: 75% 75%;
+    background-position: center center;
+    border: 0;
+    width: 20px;
+    height: 30px;
+    background-color: rgb(0 156 255);
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next{
+    background: url(../img/next-btn.png);
+    right: 0;
+    top: 2px;
+    background-repeat: no-repeat;
+    background-size: 75% 75%;
+    background-position: center center;
+    border: 0;
+    width: 20px;
+    height: 30px;
+    background-color: rgb(0 156 255);
+}
+.ui-datepicker-header.ui-widget-header{
+    background: 0 0;
+    border: 0;
+}
+.ui-datepicker-title{
+    color: #2a2a2a;
+    padding: 5px 3px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+}
+.ui-datepicker.ui-widget{
+    padding: 8px;
+    width: auto;
+}
+.ui-widget.ui-widget-content{
+    border: 1px solid #d3d3d3;
+    border-radius: 0;
+    margin-top: 5px;
+}
+.ui-datepicker.ui-widget .ui-datepicker-calendar{
+    border: 0;
+    margin-bottom: 24px;
+}
+.ui-datepicker.ui-widget .ui-datepicker-calendar th{
+    color: #999;
+    font-size: 12px;
+    line-height: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+.ui-datepicker.ui-widget .ui-datepicker-calendar thead tr th span{
+    border-bottom: 1px dotted #999;
+}
+.ui-widget-content .ui-state-default{
+    border: 0;
+}
+.ui-datepicker.ui-widget .ui-datepicker-calendar tr td{
+    padding: 0;
+    background: white;
+}
+.ui-datepicker.ui-widget .ui-datepicker-calendar tbody tr td .ui-state-default{
+    padding: 5px;
+    color: rgb(102 102 102);
+    font-size: 12px;
+    line-height: 17px;
+    text-align: right;
+    border: 0;
+    background: #f5f5f5;
+    transition: all 0.3s ease-in-out;
+}
+.ui-datepicker.ui-widget .ui-datepicker-calendar tbody tr td .ui-state-default.ui-state-highlight{
+    background: rgb(0 156 255);
+    color: white;
+}
+.card_content .card form .btnsubmit{
+    margin-top: 20px;
+    padding: 10px 30px;
+    color: white;
+    border-radius: 8px;
+    border: 1px solid rgb(0 156 255);
+    background: rgb(0 156 255);
+    transition: all 0.3s ease-in-out;
+}
+.card_content .card form .btnsubmit:hover{
+    border: 1px solid rgb(0, 121, 196);
+    background: rgb(0, 121, 196);
+}

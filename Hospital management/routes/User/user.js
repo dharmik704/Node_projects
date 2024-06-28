@@ -31,13 +31,13 @@ routes.get('/logout', async (req,res) => {
 
 routes.get('/dashboard', passport.usercheckAuth, userctrl.dashboard);
 
-// routes.get('/add_admin', passport.checkAuth, adminctrl.addadmin);
+routes.get('/bookapointment', passport.usercheckAuth, userctrl.bookapointment);
 
-// routes.get('/view_admin', passport.checkAuth, adminctrl.viewadmin);
+routes.get('/takeappointment/:id', passport.usercheckAuth, userctrl.takeappointment);
 
-// routes.get('/deleteadmin', passport.checkAuth, adminctrl.deleteadmin);
+routes.post('/confirmappointment/:id', passport.usercheckAuth, userctrl.confirmappointment);
 
-// routes.get('/updateadmin', passport.checkAuth, adminctrl.updateadmin);
+routes.get('/viewapointment', passport.usercheckAuth, userctrl.viewapointment);
 
 routes.get('/profile', passport.usercheckAuth, userctrl.profile);
 
@@ -49,23 +49,23 @@ routes.get('/changepassword', passport.usercheckAuth, userctrl.changepassword);
 
 routes.post('/editpassword', passport.usercheckAuth, userctrl.editpassword);
 
-// routes.get('/deactive/:id', passport.checkAuth, adminctrl.deactive);
+routes.get('/deactive/:id', passport.usercheckAuth, userctrl.deactive);
 
-// routes.get('/active/:id', passport.checkAuth, adminctrl.active);
+// routes.get('/active/:id',  passport.usercheckAuth, userctrl.active);
 
 // forgot password code
 
-// routes.get('/forgotpass', doctorctrl.forgotpass);
+routes.get('/forgotpass', userctrl.forgotpass);
 
-// routes.post('/verifyemail', doctorctrl.verifyemail);
+routes.post('/verifyemail', userctrl.verifyemail);
 
-// routes.get('/verifyotp', doctorctrl.verifyotp);
+routes.get('/verifyotp', userctrl.verifyotp);
 
-// routes.post('/checkotp', doctorctrl.checkotp);
+routes.post('/checkotp', userctrl.checkotp);
 
-// routes.get('/changepass', doctorctrl.changepass);
+routes.get('/changepass', userctrl.changepass);
 
-// routes.post('/editpass', doctorctrl.editpass);
+routes.post('/editpass', userctrl.editpass);
 
 // end of forgot password code
 

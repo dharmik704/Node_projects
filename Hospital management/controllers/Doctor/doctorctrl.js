@@ -2,11 +2,17 @@ const doctor = require("../../models/doctormdl");
 
 const specialization = require("../../models/specializationmdl");
 
+const doctime = require("../../models/doctor_timemdl");
+
 const nodemailer = require('nodemailer');
 
 const path = require('path');
 
 const fs = require('fs');
+
+const { info } = require("console");
+
+const appointment = require("../../models/appointmentmdl");
 
 module.exports.login = async (req,res) => {
     try{
@@ -144,6 +150,235 @@ module.exports.editpassword = async (req,res) => {
         }
         else{
             req.flash('error', 'Current password is not valid');
+            return res.redirect('back');
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.add_time = async (req,res) => {
+    try{
+        let timedata = await doctime.find({doctorid: req.user._id});
+        if(timedata.length >= 1){
+            req.flash('error', 'You Can not Add More Than One Data!');
+            return res.redirect('back');
+        }
+        else{
+            return res.render('Doctor/doctor_addtime');
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.savetime = async (req,res) => {
+    try{
+        req.body.time = req.body.day+',' + ' ' + req.body.ftime+ ' ' + 'To' + ' ' + req.body.ltime;
+        req.body.doctorid = req.user.id;
+        let addtime = await doctime.create(req.body);
+        if(addtime){
+            req.flash('success', 'Time Added Successfully');
+            return res.redirect('/doctor/view_time');
+        }
+        else{
+            req.flash('error', 'Time is Not Added! Somthing went wrong...');
+            return res.redirect('back');
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.view_time = async (req,res) => {
+    try{
+        let timedata = await doctime.find({doctorid: req.user._id});
+        if(timedata){
+            return res.render('Doctor/doctor_viewtime',{
+                timedata
+            });
+        }
+        else{
+            req.flash('error', 'Somthing went wrong!');
+            return res.redirect('back');
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.updatetime = async (req,res) => {
+    try{
+        let timedata = await doctime.findById(req.params.id);
+        if(timedata){
+            return res.render('Doctor/doctor_updatetime',{
+                timedata
+            })
+        }
+        else{
+            req.flash('error', 'Somthing went wrong!');
+            return res.redirect('back');
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.edittime = async (req,res) => {
+    try{
+        let timedata = await doctime.findById(req.params.id);
+        if(timedata){
+            req.body.time = req.body.day+',' + ' ' + req.body.ftime+ ' ' + 'To' + ' ' + req.body.ltime;
+            let uptime = await doctime.findByIdAndUpdate(req.params.id,req.body);
+            if(uptime){
+                req.flash('success', 'Time is Updated Successfully');
+                return res.redirect('/doctor/view_time');
+            }
+            else{
+                req.flash('error', 'Time is not Updated! Somthing went wrong!');
+                return res.redirect('back');
+            }
+        }
+        else{
+            req.flash('error', 'Somthing went wrong!');
+            return res.redirect('back');
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.viewappointment = async (req,res) => {
+    try{
+        let appdata = await appointment.find({doctorid: req.user.id});
+        if(appdata){
+            return res.render('Doctor/doctor_viewappointment',{
+                appdata
+            });
+        }
+        else{
+            req.flash('error', 'Somthing went wrong!');
+            return res.redirect('back');
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.deactive = async (req,res) => {
+    try{
+        let appdata = await appointment.findByIdAndUpdate(req.params.id, {dstatus: false}).populate('doctorid').exec();
+        if(appdata){
+            const transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                  // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+                  user: "dharmikchhodvdiya@gmail.com",
+                  pass: "wpeyeoaukdmcwhiv",
+                },
+            });
+            if(info){
+                const info = await transporter.sendMail({
+                    from: 'dharmikchhodvdiya@gmail.com', // sender address
+                    to: appdata.email, // list of receivers
+                    subject: `Appointment Cancellation: ${ appdata.doctorid.name } Dear ${appdata.name}`, // Subject line
+                    text: "Hello world?", // plain text body
+                    html: `<p> This email confirms the cancellation of your appointment on ${appdata.date} at ${appdata.time}.<br><br>
+                    We apologize for any inconvenience.<br><br>
+                    Sincerely,<br>
+                    Dr. ${ appdata.doctorid.name }</p>`, // html body
+                });
+    
+                req.flash('success', 'Appointment has Been Cancelled');
+                return res.redirect('back');
+            }
+            else{
+                req.flash('error', 'Appointment has not Cancelled');
+                return res.redirect('back');
+            }
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.active = async (req,res) => {
+    try{
+        let appdata = await appointment.findByIdAndUpdate(req.params.id, {d2status: true}).populate('doctorid').exec();
+        if(appdata){
+            const transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                  // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+                  user: "dharmikchhodvdiya@gmail.com",
+                  pass: "wpeyeoaukdmcwhiv",
+                },
+            });
+            if(info){
+                const info = await transporter.sendMail({
+                    from: 'dharmikchhodvdiya@gmail.com', // sender address
+                    to: appdata.email, // list of receivers
+                    subject: `Appointment Summary: ${ appdata.doctorid.name } Dear ${appdata.name}`, // Subject line
+                    text: "Hello world?", // plain text body
+                    html: `<p> This email confirms your recent appointment on ${appdata.date} at ${appdata.time} is done.<br><br>
+                    A detailed summary is available in your patient portal.<br><br>
+                    Thank you for choosing our practice.<br><br>
+                    Sincerely,<br>
+                    Dr. ${ appdata.doctorid.name }</p>`, // html body
+                });
+    
+                req.flash('success', 'Appointment has Done Successfully');
+                return res.redirect('back');
+            }
+            else{
+                req.flash('error', 'Appointment has not Done');
+                return res.redirect('back');
+            }
+        }
+    }
+    catch(e){
+        req.flash('error', 'Somthing went wrong!');
+        console.log(e);
+        return res.redirect('back');
+    }
+}
+
+module.exports.addpatientdetail = async (req,res) => {
+    try{
+        let appdata = await appointment.findById(req.params.id);
+        if(appdata){
+            return res.render('Doctor/doctor_addpatient');
+        }
+        else{
+            req.flash('error', 'Somthing went wrong!');
             return res.redirect('back');
         }
     }

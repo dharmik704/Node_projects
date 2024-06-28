@@ -1,0 +1,42 @@
+
+<%- include('user_header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <link rel="stylesheet" href="/css/boxstyle.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/fonts/font-awsome/css/all.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awsome/css/fontawesome.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/poppins/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/Sansita/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/philosopher/stylesheet.css" type="text/css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css"> -->
+</head>
+<body>
+
+    <section class="specialization-box">
+        <div class="row">
+            <% for(spdata of spldata){ %> 
+                    
+                <div class="w-4">
+                    <a href="/user/takeappointment/<%= spdata.id %>">
+                        <div class="box text-center">
+                            <div class="icon">
+                                <img src="/img/doctor-bag.png" alt="doctor-bag">
+                            </div>
+                            <p><%= spdata.specialization %></p>
+                        </div>
+                    </a>
+                </div>
+                    
+                <% } %>
+            </div>
+    </section>
+    
+</body>
+</html>
+
+<%- include('user_footer') %>

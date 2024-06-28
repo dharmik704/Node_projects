@@ -1,0 +1,58 @@
+
+<%- include('doctor_header') %>
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-9">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Update Time For Doctor Present In Hospital</h6>
+                    <form method="post" action="/doctor/edittime/<%= timedata.id %>">
+
+                        <% var fulltime = timedata.time.split(' ')  %>
+
+                        <div class="row mb-3">
+                            <label for="day" class="col-sm-2 col-form-label">Day</label>
+                            <div class="col-sm-10">
+                                <% var day=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %>
+                                <select class="form-select mb-3" aria-label="Default select example" name="day">
+                                    <option selected>--select day--</option>
+                                    <% day.map((v,i)=> { %> 
+                                        <option <% if(fulltime[0]==v){ %> <%= 'selected' %> <% } %> value="<%= v %>"><%= v %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="time" class="col-sm-2 col-form-label">Set Time</label>
+                            <div class="col-sm-4">
+                                <% var ftime=['09:00AM','10:00AM','11:00AM','12:00PM','01:00PM','02:00PM','03:00PM','04:00PM','05:00PM','06:00PM','07:00PM'] %>
+                                <select class="form-select mb-3" aria-label="Default select example" name="ftime">
+                                    <option selected>--select time--</option>
+                                    <% ftime.map((v,i)=> { %> 
+                                        <option <% if(fulltime[1]==v){ %> <%= 'selected' %> <% } %> value="<%= v %>"><%= v %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            To
+                            <div class="col-sm-4">
+                                <% var ltime=['10:00AM','11:00AM','12:00PM','01:00PM','02:00PM','03:00PM','04:00PM','05:00PM','06:00PM','07:00PM','08:00PM'] %>
+                                <select class="form-select mb-3" aria-label="Default select example" name="ltime">
+                                    <option selected>--select time--</option>
+                                    <% ltime.map((v,i)=> { %> 
+                                        <option <% if(fulltime[3]==v){ %> <%= 'selected' %> <% } %> value="<%= v %>"><%= v %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Update Time</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form End -->
+
+<%- include('doctor_footer') %>

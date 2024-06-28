@@ -1,0 +1,85 @@
+<%- include('doctor_header') %>
+
+            <!-- Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                            <h4 class="card-title">Show Appointments</h4>
+                            <div class="table-responsive">
+                              <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Status</th>
+                                        <th colspan="2" scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% var i=1 %>
+                                    <% for(adata of appdata){ %> 
+                                    <tr>
+                                        <th style="padding: 20px 10px;"><%= i++ %></th>
+                                        <td style="padding: 20px 7px;"><%= adata.name %></td>
+                                        <td style="padding: 20px 7px;"><%= adata.email %></td>
+                                        <td style="padding: 20px 7px;"><%= adata.date %></td>
+                                        <td style="padding: 20px 7px;"><%= adata.time %></td>
+                                        <td style="padding: 20px 7px;">
+                                            <% if(adata.ustatus && adata.dstatus && adata.d2status == false){ %> 
+                                                <a style="text-decoration: none; color: rgb(172, 108, 255);">Active</a>
+                                            <% }else if(adata.ustatus && adata.dstatus && adata.d2status){ %> 
+                                                <a style="color: green; text-decoration: none;">Done</a>
+                                            <% }else if(adata.ustatus == true && adata.dstatus == false){ %> 
+                                                <a style="color: rgb(255, 83, 83); text-decoration: none;">Cancelled By You</a>
+                                            <% }else if(adata.ustatus == false && adata.dstatus == true){ %> 
+                                                <a style="color: rgb(255, 83, 83); text-decoration: none;">Cancelled By User</a>
+                                            <% } %>
+                                        </td>
+                                        <% if(adata.ustatus && adata.dstatus && adata.d2status == false){ %> 
+                                            <td style="padding: 20px 7px;">
+                                                <a href="/doctor/deactive/<%= adata.id %>" style="color: rgb(255, 83, 83); text-decoration: none;">Cancle</a>
+                                                <a style="margin: 0 25px; text-decoration: none;" href="/doctor/active/<%= adata.id %>" style="color: rgb(255, 83, 83); text-decoration: none;">Done</a>
+                                            </td>
+                                        <% }else if(adata.ustatus && adata.dstatus && adata.d2status){ %> 
+                                            <td style="padding: 20px 7px;">
+                                                <a href="/doctor/addpatientdetail/<%= adata.id %>" style="color: rgb(21, 169, 255); text-decoration: none;">Add Patient Details</a>
+                                            </td>
+                                        <% }else if(adata.ustatus == true && adata.dstatus == false && adata.d2status == false ){ %> 
+                                            <td style="padding: 20px 7px;">
+                                                <a href="/doctor/deactive/<%= adata.id %>" style="color: rgb(255, 83, 83); text-decoration: none;  display: none;">Cancle</a>
+                                            </td>
+                                        <% }else if(adata.ustatus && adata.dstatus && adata.d2status == false){ %> 
+                                            <td style="padding: 20px 7px;">
+                                                <a href="/doctor/deactive/<%= adata.id %>" style="color: rgb(255, 83, 83); text-decoration: none;">Done</a>
+                                            </td>
+                                        <% }else if(adata.ustatus == false && adata.dstatus == true && adata.d2status == false){ %> 
+                                            <td style="padding: 20px 7px;">
+                                                <a href="/doctor/deactive/<%= adata.id %>" style="color: rgb(255, 83, 83); text-decoration: none;  display: none;">Cancle</a>
+                                            </td>
+                                        <% }
+                                        else if(adata.ustatus == false && adata.dstatus == true && adata.d2status == false){ %> 
+                                            <td style="padding: 20px 7px;">
+                                                <a href="/doctor/deactive/<%= adata.id %>" style="color: rgb(255, 83, 83); text-decoration: none;  display: none;">Cancle</a>
+                                            </td>
+                                        <% } %>
+                                        <!-- <td style="padding: 20px 7px;">
+                                            <a href="/user/showdoctor/<%= adata.id %>" style="color: rgb(1, 95, 14);"><i class="far fa-eye"></i></a>
+                                        </td> -->
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <!-- Table End -->
+
+<%- include('doctor_footer') %>
